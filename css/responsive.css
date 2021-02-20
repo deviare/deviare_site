@@ -40,6 +40,30 @@ section{
 }
 
 
+
+
+.controls .github-logo{
+
+	width: 90%;
+	height: 25%;
+}
+
+.github-logo  a {
+	width:100%;
+	height:100%;
+}
+.github-ico{
+	background-image:url('./../static/img/github-light-ico.png');
+	-webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+	background-size:cover;
+	background-position:center;	
+	width:80%;
+	height:90%;
+}
+
+
 /* section 2 */
 .wrapT{
 	width:100vw;
@@ -162,7 +186,7 @@ section{
 
 
 html{
-	font-size:.9em;
+	font-size:.8em;
 }
 
 section{
@@ -176,6 +200,7 @@ section{
 }
 
 
+
 .controls li {
 	height:15%;
 	width:40%;
@@ -183,6 +208,33 @@ section{
 	justify-content: center;
 	align-items: center;
 }
+
+.github-logo  a {
+	width:100%;
+	display: flex;
+	justify-content: center;
+	height:100%;
+}
+.github-ico{
+	background-image:url('./../static/img/github-light-ico.png');
+	-webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+	background-size:cover;
+	background-position:center;	
+	width:80%;
+	height:90%;
+}
+
+
+
+
+.controls .github-logo{
+
+	width: 90%;
+	height: 25%;
+}
+
 
 }
 
@@ -194,7 +246,7 @@ section{
 
 /* global */
 html{
-	font-size:.8rem;
+	font-size:.7rem;
 }
 .title{
 	font-size:4rem;
@@ -211,6 +263,29 @@ html{
 	align-items: center;
 }
 
+
+
+
+
+.github-logo{
+	width:100%;
+	height:100%;
+}
+
+.github-logo  a {
+	width:100%;
+	height:100%;
+}
+.github-ico{
+	background-image:url('./../static/img/github-light-ico.png');
+	-webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+	background-size:cover;
+	background-position:center;	
+	width:100%;
+	height:100%;
+}
 
 .pause-ico{
 	background-image:url('./../static/img/pause-64.png');
@@ -361,7 +436,7 @@ html{
 
 /* global */
 html{
-	font-size:.8rem;
+	font-size:.7rem;
 }
 .title{
 	font-size:4rem;
@@ -379,6 +454,26 @@ html{
 }
 
 
+
+.github-logo{
+	width:100%;
+	height:100%;
+}
+
+.github-logo  a {
+	width:100%;
+	height:100%;
+}
+.github-ico{
+	background-image:url('./../static/img/github-light-ico.png');
+	-webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+	background-size:cover;
+	background-position:center;	
+	width:100%;
+	height:100%;
+}
 .pause-ico{
 	background-image:url('./../static/img/pause-64.png');
 	-webkit-background-size: cover;

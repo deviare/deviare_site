@@ -40,7 +40,7 @@ window.addEventListener('resize', ()=>{
 })
 
 
-for(var i=0; i<length_path; i+=10){
+for(var i=0; i<length_path; i+=7){
 	var pointDom=path.getPointAtLength(i);
 	if(pointDom.y < 60){
 		continue;

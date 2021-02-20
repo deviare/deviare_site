@@ -94,6 +94,37 @@
 	display:none;
 }
 
+
+
+
+.controls .github-logo{
+
+	width: 90%;
+	height: 35%;
+}
+
+
+.github-logo  a {
+	width:100%;
+	height:100%;
+	display:inherit;
+	justify-content:center;
+}
+.github-ico{
+	background-image:url('./../static/img/github-light-ico.png');
+	-webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+	background-size:cover;
+	background-position:center;	
+	width:80%;
+	height:90%;
+}
+
+
+
+
+
 .play-ico{
 	background-image:url('./../static/img/play-64.png');
 	-webkit-background-size: cover;
