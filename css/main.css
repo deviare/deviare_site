@@ -1,0 +1,165 @@
+/* Importing other style sheets */
+
+@import url('./nav.css');
+@import url('./text_box.css');
+@import url('./responsive.css');
+
+@import url('https://fonts.googleapis.com/css2?family=Lacquer&display=swap');
+
+/*      font-family: 'Lacquer', cursive; */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+/*     font-family: 'Ubuntu', sans-serif; */
+
+
+
+/* global rules */
+
+*{
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+}
+
+html{
+	overflow-x:hidden;
+	scroll-behavior:smooth;
+}
+
+
+body{
+	overflow-x:hidden;
+}
+
+[lang='eng']{
+	display:none;	
+}
+
+section{
+	border-bottom:1px solid black;
+ 	width:100vw;
+	height:100vh;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	align-content:center;
+}
+
+
+
+/* noscript */
+
+[noscript=""]{
+
+	height:100vh;
+	width:100vw;
+	background:rgb(10,8,9);
+	position:fixed;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	margin:auto;
+	z-index:9999;
+
+}
+
+
+[noscript=""] > div {
+
+	padding:5%;
+	width:90vw;
+	height:90vh;
+	background-color:rgb(245,252,254);
+	font-size:2rem;
+	color:black;
+     	font-family: 'Ubuntu', sans-serif;
+	border:3px double red;
+	display:flex;
+	flex-direction:column;
+	justify-content:space-around;
+	align-items:center;
+
+
+
+}
+
+
+
+/* first section */
+.title {
+
+	padding-bottom:5%;
+        font-family: 'Lacquer', cursive; 
+	font-size:5rem;	
+	text-align:center;
+	margin:auto;
+	color:black:;
+	position:absolute;
+}
+
+
+.svg{
+	background:transparent;
+	position:absolute;
+	z-index:0;
+}
+
+.drops{
+	display:flex;
+	justify-content:center;
+	align-items:flex-end;
+	align-content:center;
+}
+
+
+
+
+/* second section */
+.trisec{
+	display:flex;
+	justify-content:center;
+	align-content:center;
+	align-items:center;
+}
+ 
+.wrap{
+	position:absolute;
+	padding:5%;
+	width:100%;
+	height:100%;
+	display:grid;
+	grid-template-rows:1fr 1fr;
+	grid-template-columns:1fr 1fr;
+	grid-row-gap:50%;
+	grid-column-gap:50%;
+}
+
+.containerT1{
+	height:100%;
+	width:100%;
+}
+
+.containerT{
+	height:100%;
+	width:100%;
+}
+
+.containerT2{
+	height:100%;
+	width:100%;
+}
+
+
+/* third section */
+.section3{
+	-webkit-box-shadow:2px 2px 3px 10px rgba(0,0,0,.7) inset;
+	box-shadow:2px 2px 3px 10px rgba(0,0,0,.7) inset;
+	z-index:400;
+}
+
+
+/* last section */ 
+.particel{
+	overflow-y:hidden;
+}

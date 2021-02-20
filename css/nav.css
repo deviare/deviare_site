@@ -1,0 +1,189 @@
+.nav{
+        font-family: 'Lacquer', cursive; 
+	position:fixed;
+	width:100%;
+	padding-right:2%;
+	display:flex;
+	justify-content:flex-end;
+	z-index:999;
+}
+
+.menu{
+	box-shadow: 5px 4px 8px 3px rgba(0,0,0,.8);
+	margin: 1% 1% 0% 1%;
+	list-style:none;
+	background:rgb(4,4,4);
+	border:3px double white;
+	height:10vh;
+	justify-content:space-around;
+	align-items:center;
+	align-content:center;
+	opacity:0%;
+	display:flex;
+	pointer-events:none;
+}
+
+
+.menu li {
+	margin:0 2% 0 2%;
+}
+
+
+
+.menu li a {
+	color:white;
+	text-decoration:none;
+}
+
+
+
+
+.ctrl-nav{	
+	position:fixed;
+	height:40vh;
+	width:100vw;	
+	z-index:998;
+	pointer-events:auto;
+}
+
+.controls{
+	box-shadow: 5px 4px 8px 3px rgba(0,0,0,.8);
+	float:right;
+	margin-top: 13vh;
+	margin-right: 3%;
+	background:rgb(4,4,4);
+	border:3px double white;
+	display:flex;
+	flex-direction:column;
+	justify-content:space-around;
+	align-items:center;
+	align-content:center;
+	opacity:0%;
+	list-style:none;	
+	pointer-events:none;
+}
+
+.controls li {
+	height:15%;
+	width:50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.controls li button{
+	font-family: 'Lacquer', cursive; 
+	color:white;
+	border:none;
+	background:none;
+	cursor:pointer;
+	width:100%;
+	height:100%;
+}
+
+
+.pause-ico{
+	background-image:url('./../static/img/pause-64.png');
+	background-size:cover;
+	-webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+	background-position:center;
+	width:80%;
+	height:90%;
+	display:none;
+}
+
+.play-ico{
+	background-image:url('./../static/img/play-64.png');
+	-webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+	background-size:cover;
+	background-position:center;	
+	width:80%;
+	height:90%;
+}
+
+.menu-btn{
+	box-shadow: 5px 4px 8px 3px rgba(0,0,0,.8);
+	color:black;
+        font-family: 'Lacquer', cursive; 
+	background:white;
+	font-size:1em;	
+	border:5px double black;
+	padding: 0 1% 0 1%;
+	margin-top:1%;	
+}
+
+
+
+.controls-active{
+	display:flex;
+	justify-content:space-around;
+	animation: openC 1s ease-out;
+ 	animation-fill-mode:forwards;
+	pointer-events:auto;
+}
+
+.nav-active{
+	display:flex;
+	justify-content:space-around;
+	animation: openM 1s ease-out;
+ 	animation-fill-mode:forwards;	
+}
+
+
+@keyframes closeC{
+
+	from{
+		height:100%;
+		opacity:100%;
+	}
+	to{
+		height:0%;
+		opacity:0%;	
+	}
+}
+
+
+@keyframes openC{
+
+	from{
+		height:0%;
+		opacity:0%;
+	}
+	to{
+		height:100%;
+		opacity:100%;
+	}
+}
+
+
+@keyframes closeM{
+
+	from{
+		width:100%;
+		opacity:100%;
+	}
+	to{
+		width:0%;
+		opacity:0%;
+	}
+}
+
+
+@keyframes openM{
+
+	from{
+		width:0%;
+		opacity:0%;
+	}
+	to{
+		width:100%;
+		opacity:100%;
+		pointer-events:all;
+	}
+}
+
+
