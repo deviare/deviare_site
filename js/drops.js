@@ -19,6 +19,8 @@ dropSec.appendChild(dropcv);
 
 var length_path = parseInt(path.getTotalLength());
 
+
+console.log(` length_path -> ${length_path}`);
 var requestId=[];
 var vertici= []
 var allPoints=[];
@@ -40,7 +42,15 @@ window.addEventListener('resize', ()=>{
 })
 
 
-for(var i=0; i<length_path; i+=7){
+
+var svg_info = {
+	"sec_width":widthD,
+	"sec_height":heightD,
+	"svg_path":path
+}
+
+
+for(var i=0; i<length_path; i+=5){
 	var pointDom=path.getPointAtLength(i);
 	if(pointDom.y < 60){
 		continue;
@@ -54,17 +64,15 @@ for(var i=0; i<length_path; i+=7){
 }
 
 
+
+
 var worker = new Worker('js/workerDrop.js');
 
 worker.addEventListener('message', (e)=>{
-
 	vertici = JSON.parse(e.data);
-
 	if (drops.length == 0){
 		for(var i=0; i<vertici.length ;i++){
-
 			var vely = (Math.random() *10);
-			
 			var r = Math.floor((Math.random() *13*3)+30);
 			var drop = {
 				x:vertici[i].x,
@@ -86,10 +94,7 @@ worker.postMessage(allPoints);
 
 
 function horizontal_dots(vertix) {
-
-
 	for (var i = 0 ; i<vertix.length; i++){
-		
 		var grdx = tmpcxtD.createRadialGradient(vertix[i].x, vertix[i].y-10, 0,  vertix[i].x, vertix[i].y-10 , 50);
 		grdx.addColorStop(0,'rgba(255,0,0,1)');
 		grdx.addColorStop(1,'rgba(255,0,0,0)');
@@ -102,10 +107,8 @@ function horizontal_dots(vertix) {
 
 
 function fall(){
-
 		tmpcxtD.clearRect(0,0, widthD, heightD);
 		var le = drops.length;
-
 		while(le--){
 			var drp = drops[le];
 			drp.y += drp.vely;
@@ -114,12 +117,10 @@ function fall(){
 			drp.y = 0;
 			}
 
-
 			tmpcxtD.beginPath();
 			var grd = tmpcxtD.createRadialGradient(drp.x, drp.y, 0, drp.x, drp.y, drp.r);
 			grd.addColorStop(0,'rgba(255,0,0,1)');
 			grd.addColorStop(1,'rgba(255,0,0,0)');
-		
 			tmpcxtD.fillStyle= grd;
 			tmpcxtD.arc(drp.x,  drp.y , drp.r , 0 ,Math.PI*2, 0);
 			tmpcxtD.fill();
@@ -129,7 +130,6 @@ function fall(){
 
 	horizontal_dots(vertici);
 	metabalize();
-	
 	requestAnimationFrame(fall)
 
 }

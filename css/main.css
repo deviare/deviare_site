@@ -1,17 +1,10 @@
-/* Importing other style sheets */
+/* Importing other style sheets and fonts*/
 
 @import url('./nav.css');
 @import url('./text_box.css');
-@import url('./responsive.css');
 
 @import url('https://fonts.googleapis.com/css2?family=Lacquer&display=swap');
-
-/*      font-family: 'Lacquer', cursive; */
-
-
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
-/*     font-family: 'Ubuntu', sans-serif; */
-
 
 
 /* global rules */
@@ -25,6 +18,7 @@
 html{
 	overflow-x:hidden;
 	scroll-behavior:smooth;
+	font-size:.9rem;
 }
 
 
@@ -118,9 +112,8 @@ section{
 /* second section */
 .trisec{
 	display:flex;
-	justify-content:center;
-	align-content:center;
-	align-items:center;
+	width:100vw;
+	height:100vh;
 }
  
 .wrap{
@@ -162,4 +155,18 @@ section{
 /* last section */ 
 .particel{
 	overflow-y:hidden;
+}
+
+
+
+
+
+@media  only screen and (max-width : 600px){
+
+/* global */
+html{
+	font-size:.7rem;
+}
+.title{
+	font-size:4rem;
 }
