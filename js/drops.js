@@ -1,74 +1,21 @@
-var dropSec = document.querySelector('.drops');
-var dropcv = document.createElement('canvas');
-var tmpdropcv = document.createElement('canvas');
-var svg = document.querySelector('.svg');
-var path = document.querySelector('.svgP');
-
-
+const workerDrop = new Worker('js/workerDrop.js');
+const workerShape = new Worker('js/workerShape.js');
+const dropSec = document.querySelector('.drops');
+const dropcv = document.createElement('canvas');
+const tmpdropcv = document.createElement('canvas');
 var heightD = dropcv.height = tmpdropcv.height =  sec_height;
 var widthD = dropcv.width = tmpdropcv.width = sec_width;
-
 var tmpcxtD = tmpdropcv.getContext('2d');
 var cxtD = dropcv.getContext('2d');
 var coef = 210;
 var drops = [];
-svg.setAttributeNS(null , 'width', `${widthD}`)
-svg.setAttributeNS(null , 'height', `${heightD}`)
+var requestId=[];
+var vertici= [];
 
 dropSec.appendChild(dropcv);
 
-var length_path = parseInt(path.getTotalLength());
 
-
-console.log(` length_path -> ${length_path}`);
-var requestId=[];
-var vertici= []
-var allPoints=[];
-
-	
-window.addEventListener('resize', ()=>{
-
-	heightD = dropcv.height = tmpdropcv.height =  sec_height;
-	widthD = dropcv.width = tmpdropcv.width = sec_width;
-	tmpcxtD = tmpdropcv.getContext('2d');
-	cxtD = dropcv.getContext('2d');
-
-	svg.setAttributeNS(null , 'width', `${widthD}`)
-	svg.setAttributeNS(null , 'height', `${heightD}`)
-
-	length_path = parseInt(path.getTotalLength());
-
-
-})
-
-
-
-var svg_info = {
-	"sec_width":widthD,
-	"sec_height":heightD,
-	"svg_path":path
-}
-
-
-for(var i=0; i<length_path; i+=5){
-	var pointDom=path.getPointAtLength(i);
-	if(pointDom.y < 60){
-		continue;
-	}
-	var x = pointDom.x;
-	var y = pointDom.y;
-	allPoints.push({
-		x:x,
-		y:y,
-	});
-}
-
-
-
-
-var worker = new Worker('js/workerDrop.js');
-
-worker.addEventListener('message', (e)=>{
+workerDrop.addEventListener('message', (e)=>{
 	vertici = JSON.parse(e.data);
 	if (drops.length == 0){
 		for(var i=0; i<vertici.length ;i++){
@@ -78,19 +25,79 @@ worker.addEventListener('message', (e)=>{
 				x:vertici[i].x,
 				y:Math.floor((Math.random()*10)+(Math.random()*30)+(Math.random()*3)),
 				r:r,
-				vely: vely >7 || vely < 3 ? vely = 4+Math.random()*Math.random() : vely
-				}
+				vely: vely >7 || vely < 3 ? vely = 4+ (Math.floor (Math.random()*2)) : vely
+				};
 			drops.push(drop);
 			}
 	}
-
 	horizontal_dots(vertici);
 	fall();
 })
 
 
 
-worker.postMessage(allPoints);
+
+workerShape.addEventListener('message', (bloodShape) => {
+
+	const title = document.querySelector('.title');
+	const first = document.querySelector('#first');
+	const shapeWrap = document.createElement('div');
+	shapeWrap.innerHTML = bloodShape.data;
+
+	with (shapeWrap.style){
+		position='absolute'
+		width ='100vw'
+		height = '100vh'
+	}
+	first.insertBefore(shapeWrap, title);
+
+	const svg = document.querySelector('.svg');
+	const path = document.querySelector('.svgP');
+	svg.setAttributeNS(null , 'width', `${widthD}`);
+	svg.setAttributeNS(null , 'height', `${heightD}`);
+
+	getCordsPathPoits(path)
+		.then ( (points)  => {
+			workerDrop.postMessage(points);
+		})
+
+	})
+
+
+workerShape.postMessage(true);
+	
+window.addEventListener('resize', ()=>{
+	heightD = dropcv.height = tmpdropcv.height =  sec_height;
+	widthD = dropcv.width = tmpdropcv.width = sec_width;
+	tmpcxtD = tmpdropcv.getContext('2d');
+	cxtD = dropcv.getContext('2d');
+	const svg = document.querySelector('.svg');
+	const path = document.querySelector('.svgP');
+	svg.setAttributeNS(null , 'width', `${widthD}`);
+	svg.setAttributeNS(null , 'height', `${heightD}`);
+})
+
+
+
+
+async function getCordsPathPoits (path){
+	var allPoints=[];
+	var length_path = parseInt(path.getTotalLength());
+
+	for(var i=0 ; i<length_path; i=i+3){
+		var pointDom=path.getPointAtLength(i);
+		if(pointDom.y < 60){
+			continue;
+		}
+		var x = pointDom.x;
+		var y = pointDom.y;
+		allPoints.push({
+			x:x,
+			y:y, 
+		});
+	}
+	return await allPoints
+}
 
 
 function horizontal_dots(vertix) {
@@ -125,12 +132,10 @@ function fall(){
 			tmpcxtD.arc(drp.x,  drp.y , drp.r , 0 ,Math.PI*2, 0);
 			tmpcxtD.fill();
 			tmpcxtD.closePath();
-
 		}
-
 	horizontal_dots(vertici);
 	metabalize();
-	requestAnimationFrame(fall)
+	requestAnimationFrame(fall);
 
 }
 

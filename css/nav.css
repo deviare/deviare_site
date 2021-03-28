@@ -92,10 +92,12 @@
 }
 
 .ico{
-	-webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-	background-size:cover;
+	-webkit-background-size: contain;
+        -moz-background-size: contain;
+        -o-background-size: contain;
+	
+	background-size:contain;
+	background-repeat:no-repeat;
 	background-position:center;	
 
 }
@@ -120,34 +122,6 @@
 	min-height:80%;
 	min-width:55%;
 }
-
-
-
-@media only screen and (max-width:600px){
-
-	.pause-ico{
-		background-image:url('./../static/img/pause-64.png');
-		display:none;
-		min-height:50%;
-		min-width:50%;
-	}
-
-
-	.play-ico{
-		background-image:url('./../static/img/play-64.png');
-		min-height:50%;
-		min-width:50%;
-	}
-
-
-	.github-ico{
-		background-image:url('./../static/img/github-light-ico.png');
-		min-height:80%;
-		min-width:75%;
-	}
-}
-
-
 
 
 .controls-active{
