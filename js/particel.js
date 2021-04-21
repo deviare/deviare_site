@@ -1,5 +1,3 @@
-
-
 var secP = document.querySelector('.particel');
 var cvP = document.createElement('canvas');
 
@@ -38,8 +36,6 @@ window.addEventListener('resize', ()=>{
         }
 
         fillDots(n_dots);
-        clearInterval();
-        setInterval(show,100);
 })
 
 
@@ -57,17 +53,20 @@ if( sec_width< 650){
 	min_distance=150;
 }
 
-
+function getVel(){
+	while(true){
+		const vel =  Math.random() - Math.random();
+		if (vel != 0){
+			return vel
+		}
+	}
+}
 
 
 function fillDots(n_dots){
-
-
 	for(var i=0; i<n_dots; i++){
-
-
-		var velx =  Math.random() - Math.random();
-		var vely =  Math.random() - Math.random();
+		var velx = getVel();
+		var vely =  getVel();
 		var r = Math.floor(Math.random())+5;
 		var part = {
 			x: Math.floor((Math.random()*sec_width)),
@@ -76,21 +75,16 @@ function fillDots(n_dots){
 			velx: velx,
 			vely:vely
 		}
-
 		particels.push(part);
 	}
-
-
 }
 
 
 function show(){
 
-
 	ctxP.fillStyle='rgba(255,0 ,0, 1)';
 	ctxP.rect(0, 0, sec_width, sec_height);
 	ctxP.fill()
-
 
 	var len = particels.length
 	while (len--){
@@ -115,18 +109,13 @@ function show(){
 			part.y = 0;
 		}
 
-
 		ctxP.beginPath();
 		ctxP.fillStyle = 'white';
 		ctxP.arc(part.x, part.y, part.r/2, 0, Math.PI*2, false);
 		ctxP.fill();
 		ctxP.closePath();
-
 	}
-
 	checkDistance();
-
-
 }
 
 
@@ -134,16 +123,11 @@ function show(){
 
 
 function checkDistance(){
-
-
 	for(var x=0; x<particels.length; x++){
-
 		var p1 = particels[x];
-
 		for(var i=0 ; i<particels.length; i++){
 			var p2 = particels[i];
 			var close = getDistance(p1,p2);
-
 			if(close){
 				ctxP.beginPath()
 				ctxP.strokeStyle='white';
@@ -157,12 +141,10 @@ function checkDistance(){
 }
 
 function getDistance(prt, prt1){
-
 	return Math.sqrt((prt.x-prt1.x)*(prt.x-prt1.x)+ (prt.y-prt1.y)*(prt.y-prt1.y)) < min_distance
 }
 
 
 
 fillDots(n_dots)
-setInterval(show,80)
 

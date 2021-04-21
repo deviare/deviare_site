@@ -1,41 +1,27 @@
-
-
-
-
 var section = document.querySelector('section');
 var sec_height = section.clientHeight;
 var sec_width = section.clientWidth;
-var noscript = document.querySelector("[noscript='']");
+const noscript = document.querySelector("[noscript='']");
 
 noscript.style.display='none';
 noscript.style.visibility='hidden';
 noscript.removeAttribute('noscript')
 
-
-
-
 const uA = navigator.userAgent
-
 
 if( uA.includes("iPhone") ||  uA.includes("Android") ){
 
-	var body = document.querySelector("body");
-	var btn = document.querySelector(".menu-btn");
-	var head = document.querySelector("head");
-	var head_html = head.innerHTML;
-	var no_zoom = "<meta name='viewport' content='user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi' />"
+	const body = document.querySelector("body");
+	const btn = document.querySelector(".menu-btn");
+	const head = document.querySelector("head");
+	const head_html = head.innerHTML;
+	const no_zoom = "<meta name='viewport' content='user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi' />"
 
-
-	var new_head = head_html + no_zoom;
+	const new_head = head_html + no_zoom;
 	head.innerHTML = new_head;
-
-
 	body.style.overflow="hidden";
 
 }
-
-		
-
 
 
 window.addEventListener('resize', ()=>{
@@ -43,16 +29,7 @@ window.addEventListener('resize', ()=>{
 	section = document.querySelector('section');
 	sec_height = section.clientHeight;
 	sec_width = section.clientWidth;
-
 })
-
-
-
-
-
-
-
-
 
 
 const music = ()=>{
@@ -68,7 +45,6 @@ const music = ()=>{
 
 	})
 
-
 	pause.addEventListener('click', (event)=>{
 		audio.pause();
 		play.style.display='block';
@@ -78,21 +54,14 @@ const music = ()=>{
 
 
 
-
-
 const changeLenguage = ()=>{
-
 
 	const ita = document.querySelector('.ita');
 	const eng = document.querySelector('.eng');
-
 	const itaT = document.querySelectorAll("[lang='ita']");
 	const engT = document.querySelectorAll("[lang='eng']");
 
-
 	ita.addEventListener('click', ()=>{
-
-
 		for(var i=0; i<itaT.length; i++){
 			itaT[i].style.display='block';
 		}
@@ -102,10 +71,7 @@ const changeLenguage = ()=>{
 		}
 	})
 
-
 	eng.addEventListener('click', ()=>{
-
-
 		for(var i=0; i<itaT.length; i++){
 			itaT[i].style.display='none';
 		}
@@ -114,92 +80,62 @@ const changeLenguage = ()=>{
 			engT[i].style.display='block';
 		}
 	})
-
-
 }
-
 
 
 
 const rotateT = ()=>{
 
-	var T = document.querySelectorAll('.T');
-
-	var svgns = 'http://www.w3.org/2000/svg';
-
+	const T = document.querySelectorAll('.T');
+	const svgns = 'http://www.w3.org/2000/svg';
 
 	function drawTriangle(T){
 
-	
-	for(var i=0;i<T.length;i++){
-		var svg = document.createElementNS( svgns, 'svg');
-		var triangle = document.createElementNS( svgns, 'polygon');
-		
+		for(var i=0;i<T.length;i++){
+			var svg = document.createElementNS( svgns, 'svg');
+			var triangle = document.createElementNS( svgns, 'polygon');
+			var heightT = T[i].clientHeight;
+			var widthT = T[i].clientWidth;
+			svg.setAttributeNS(null, 'viewBox', `0 0 ${widthT} ${heightT}`);
+			svg.style.position='relative';
+			svg.style.zIndex='10';	
+			triangle.setAttributeNS(null, 'points', `${widthT/8} ${heightT/8}, ${widthT/4} ${heightT-heightT/4}, ${widthT-widthT/6} ${heightT-heightT/8}`);
+			if( i == 0){
+				with(triangle.style){
+					fill='none';
+					stroke='rgb(0,0,0)';
+					strokeWidth='7px'
+				}
+			}else if(i == 1) {
+				with(triangle.style){
+					fill='none';
+					stroke='red';
+					strokeWidth='7px'
+					filter=`blur(4px)`
+				}
 
-		var heightT = T[i].clientHeight;
-		var widthT = T[i].clientWidth;
-
-		svg.setAttributeNS(null, 'viewBox', `0 0 ${widthT} ${heightT}`);
-		svg.style.position='relative';
-		svg.style.zIndex='10';	
-
-
-		triangle.setAttributeNS(null, 'points', `${widthT/8} ${heightT/8}, ${widthT/4} ${heightT-heightT/4}, ${widthT-widthT/6} ${heightT-heightT/8}`);
-		
-
-
-		if( i == 0){
-			with(triangle.style){
-				fill='none';
-				stroke='rgb(0,0,0)';
-				strokeWidth='7px'
+			}else if (i == 2) {
+				with(triangle.style){
+					fill='none';
+					stroke='black';
+					strokeWidth='7px'
+					filter=`blur(4px)`
+				}
 			}
-		}else if(i == 1) {
-
-			with(triangle.style){
-				fill='none';
-				stroke='red';
-				strokeWidth='7px'
-				filter=`blur(4px)`
-			}
-
-		}else if (i == 2) {
-
-			with(triangle.style){
-				fill='none';
-				stroke='black';
-				strokeWidth='7px'
-				filter=`blur(4px)`
-			}
+			triangle.style.position='relative';
+			triangle.style.zIndex='0';
+			svg.appendChild(triangle);
+			T[i].appendChild(svg);
 		}
-
-		triangle.style.position='relative';
-		triangle.style.zIndex='10';
-		svg.appendChild(triangle);
-		T[i].appendChild(svg);
 	}
-	}
-
 
 	drawTriangle(T);
 
-	window.addEventListener('scroll', ()=>{
-		var scroll = window.scrollY
-		for(var i=0; i<T.length ;i++){
-			T[i].style.transform=`rotate(${scroll/10-60}deg)`;
-		}
-	})
-
-
 	window.addEventListener('resize',()=>{
-		
 		for(var i=0; i<T.length; i++){
-
 			T[i].innerHTML='';
 		}
-
 		drawTriangle(T)
-
 	})
 }
 
@@ -238,90 +174,38 @@ const open_menu = () => {
 
 
 
-const spiral = () => {
+const fixControls = () =>{
+	const controls = document.querySelector('.ctrl-nav')
+	const btn = document.querySelector('.menu-btn')
+	const nav = document.querySelector('.nav')
 
-	const sec3 = document.querySelector('.section3');
-	const svgns = "http://www.w3.org/2000/svg"
+	function fixWidth(){
+		const widthBtn = btn.clientWidth
+		controls.style.width = widthBtn+'px'
 
-	function create_cicles(){
-
-		var ccx = sec_width /2;
-		var ccy = sec_height /2;
-		var svg = document.createElementNS( svgns, 'svg');
-		svg.setAttributeNS(null, 'viewBox',`0 0 ${sec_width} ${sec_height}`);
-
-		svg.setAttributeNS(null, 'preserveAspectRatio', "xMidYMid slice");
-		svg.id='spiral';
-
-		svg.style.position='absolute';
-
-
-		for (var i = 0; i < 20; i++){
-			var circle = document.createElementNS(svgns, 'circle');
-			circle.setAttributeNS(null, 'cx', `${ccx}`);
-			circle.setAttributeNS(null, 'cy',`${ccy}`);
-			circle.setAttributeNS(null, 'r', `${i*20*3}`);
-		
-
-			with(circle.style){
-				fill='none';
-				stroke='black';
-				strokeWidth='30px';
-				zIndex='0';
-			}
-
-
-			circle.addEventListener('mouseenter', (event)=>{
-				with(event.target.style){
-					fill='none';
-					stroke='red';
-					strokeWidth='40px';
-				}
-			})
-			
-			circle.addEventListener('mouseleave', (e,i)=>{
- 				with(event.target.style){
-				fill='none';
-				stroke='black';
-				strokeWidth='30px';
-				}
-			})
-
-			svg.appendChild(circle);
-
-		}
-	sec3.appendChild(svg);
-		
 	}
 
+	function fixMarginTop() {
+		const heightBtn = btn.clientHeight
+		const marginTopBtn = parseInt(window.getComputedStyle(btn).marginTop.replace('px',''))
+		controls.style.marginTop = heightBtn + marginTopBtn + 20 +'px'
 
+	}
+	
+	function fixMarginRight() {
+		const marginRightBtn = parseInt(window.getComputedStyle(nav).paddingRight.replace('px',''))
+		controls.style.marginRight =  marginRightBtn + 6 +'px'
 
-	window.addEventListener('load', () => {
-		create_cicles();
-	})
+	}
 
-
-	window.addEventListener('resize', () =>{
-		var old = document.querySelector('#spiral');
-		sec3.removeChild(old)
-		create_cicles();	
-	})
-
-}
-
-
-const fixControls = () =>{
-	const controls = document.querySelector('.controls')
-	const btn = document.querySelector('.menu-btn')
-
-	var widthBtn = btn.clientWidth
-	controls.style.width = widthBtn+'px'
-
+	fixWidth()
+	fixMarginTop()
+	fixMarginRight()
 
 	window.addEventListener('resize', ()=>{
-
-		widthBtn = btn.clientWidth
-		controls.style.width= widthBtn+'px'
+		fixWidth()
+		fixMarginRight()
+		fixMarginTop()
 	})
 }
 
@@ -329,7 +213,6 @@ const fixControls = () =>{
 const app = () => {
 	open_menu()	
 	fixControls();
-	spiral();
 	rotateT();
 	changeLenguage();
 	music();

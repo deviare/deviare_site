@@ -94,6 +94,8 @@ section{
 
 
 .svg{
+	width:1440px;
+	height:350px;
 	background:transparent;
 	position:absolute;
 	z-index:0;
@@ -128,20 +130,13 @@ section{
 	grid-column-gap:50%;
 }
 
-.containerT1{
+.T{
 	height:100%;
 	width:100%;
+	position:relative;
+	z-index:-11
 }
 
-.containerT{
-	height:100%;
-	width:100%;
-}
-
-.containerT2{
-	height:100%;
-	width:100%;
-}
 
 
 /* third section */
@@ -158,10 +153,7 @@ section{
 }
 
 
-
-
-
-@media  only screen and (max-width : 600px){
+@media  only screen and (max-width: 600px){
 
 /* global */
 html{
@@ -170,3 +162,4 @@ html{
 .title{
 	font-size:4rem;
 }
+

@@ -4,8 +4,10 @@
 self.onmessage = function(e) {
 
 
+	console.log('worker e -> ', e.data)
 
-	var  allPoints = e.data;
+	const width = e.data['width']
+	var allPoints = e.data['points'];
 
 	var vertici=[];
 	var old_point = new DOMPoint(0,0);
@@ -22,6 +24,7 @@ self.onmessage = function(e) {
 		}
 		if (new_point.y < old_point.y){
 			if (!vertici.includes(temp_point)){
+				if ( temp_point.x > 25 && temp_point.x < width -25 )
 				vertici.push(temp_point)
 			}
 		}
@@ -31,3 +34,6 @@ self.onmessage = function(e) {
 	self.postMessage(JSON.stringify(vertici));
 
 }
+
+
+
