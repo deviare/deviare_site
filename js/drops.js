@@ -71,6 +71,8 @@ workerDrop.addEventListener('message', (e)=>{
 					y:final_height,
 					r:r,
 					vely: final_vel,
+					vel:final_vel,
+					acc:10
 					};
 				drops.push(drop);
 			}
@@ -185,15 +187,21 @@ function horizontal_dots(vertix) {
 function fall(){
 		tmpcxtD.clearRect(0,0, widthD, heightD);
 		var le = drops.length;
-		while(le--){
-			var drp = drops[le];
-			drp.y += drp.vely;
-			
+		for ( var d = 0; d < le; d++ ){
+			var drp = drops[d];
+			drp.y += drp.vel;
 			if ( drp.y > heightD ){
-			drp.y = 0;
+				drp.y = 0;
+				drp.vel = drp.vely
+			}
+			if (drp.y > spikes[d].y + drp.r -35 ){
+				if ( drp.vel < 100){
+					drp.vel += drp.acc
+				}
 			}
 
 			tmpcxtD.beginPath();
+			
 			var grd = tmpcxtD.createRadialGradient(drp.x, drp.y, 0, drp.x, drp.y, drp.r);
 			grd.addColorStop(0,'rgba(255,0,0,1)');
 			grd.addColorStop(1,'rgba(255,0,0,0)');
@@ -201,7 +209,9 @@ function fall(){
 			tmpcxtD.arc(drp.x,  drp.y , drp.r , 0 ,Math.PI*2, 0);
 			tmpcxtD.fill();
 			tmpcxtD.closePath();
+
 		}
+
 	horizontal_dots(spikes);
 	metabalize();
 }

@@ -5,7 +5,7 @@ var intervalDrops = 0
 
 window.addEventListener('scroll', () => {
 	for(var i=0; i<T.length ;i++){
-		T[i].style.transform=`skew(${window.scrollY/15-70}deg,${window.scrollY/15-50}deg)`;
+		T[i].style.transform=`rotateX(${window.scrollY/5-70}deg) rotateY(${window.scrollY/2-50}deg)`;
 	}
 
 	if ( window.scrollY > sec_height *2 +3 ){
@@ -33,7 +33,7 @@ window.addEventListener('scroll', () => {
 	}
 	if ( window.scrollY < sec_height ){
 		if (intervalDrops == 0){
-			intervalDrops = setInterval( () => fall(), 100 )
+			intervalDrops = setInterval( () => fall(), 60 )
 		}
 	}
 	else{
